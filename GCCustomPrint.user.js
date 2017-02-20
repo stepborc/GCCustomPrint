@@ -1,9 +1,8 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.86
+// @version        0.87
 // @include        https://www.geocaching.com/geocache/*
-// @require http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
 // @description    A Custom Print solution for Geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
 // @downloadURL    https://github.com/stepborc/GCCustomPrint/raw/master/GCCustomPrint.user.js
