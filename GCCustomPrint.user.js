@@ -1,33 +1,18 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.85
+// @version        0.86
 // @include        https://www.geocaching.com/geocache/*
 // @require http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
 // @description    A Custom Print solution for Geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
-// @downloadURL    http://xxx.xxx.xxx.xxx
-// @updateURL      http://xxx.xxx.xxx.xxx
+// @downloadURL    https://github.com/stepborc/GCCustomPrint/raw/master/GCCustomPrint.user.js
+// @updateURL      https://github.com/stepborc/GCCustomPrint/raw/master/GCCustomPrint.user.js
 // @grant          none
 // ==/UserScript==
 //
 // Author:         stepborc <sbgithub@gmail.com>
 // Changelog:      0.0  - 11.11.2011
-
-//                 0.72 - correct gcSize; add routine for No Attributes
-//                 0.73 - remove unnecessary line
-//                 0.74 - add Spoiler area to listing
-//                 0.75 - Remove small tag from attributes
-//                 0.76 - recoding getting Spoiler
-//                 0.77 - add cache type icon to title
-//                 0.78 - different changes to run with FF
-//                 0.79 - few syntax changes, add update and download uri
-//                 0.80 - correct hidden date
-//                 0.81 - some more gcHidden correction
-//                 0.82 - correct include to https
-//                 0.83 - correct Owner name and cache size
-//                 0.84 - move to NDHome
-//                 0.85 - remove older version infos
 //Set a link for Custom Print in the Printarea
 var lnk = " | <a id='cst_print_link'>Custom Print</a>";
 document.getElementById('ctl00_ContentBody_lnkPrintDirectionsSimple').parentNode.innerHTML += lnk;
