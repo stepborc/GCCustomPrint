@@ -1,17 +1,15 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.87
+// @version        0.88
 // @include        https://www.geocaching.com/geocache/*
-// @description    A Custom Print solution for Geocaching.com.
+// @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
 // @downloadURL    https://github.com/stepborc/GCCustomPrint/raw/master/GCCustomPrint.user.js
 // @updateURL      https://github.com/stepborc/GCCustomPrint/raw/master/GCCustomPrint.user.js
 // @grant          none
 // ==/UserScript==
-//
 // Author:         stepborc <sbgithub@gmail.com>
-// Changelog:      0.0  - 11.11.2011
 //Set a link for Custom Print in the Printarea
 var lnk = " | <a id='cst_print_link'>Custom Print</a>";
 document.getElementById('ctl00_ContentBody_lnkPrintDirectionsSimple').parentNode.innerHTML += lnk;
