@@ -87,7 +87,7 @@ function cst_print_show(){
     }
     newPage += "<normal>" + longDesc + "</normal><br>";
     newPage += "<b>Hints</b><br>" + gchint + "<br>";
-    newPage += "<b>Wegpunkte</b><br>" + gcwp +"<br>";
+    newPage += "<b>Wegpunkte</b><br>" + gcwp;
     newPage += "<b>Attribute</b><br><attributes>" + gcAttributes + "</attributes><br>";
     newPage += "<b>Spoiler</b><br>" + gcSpoiler;
     //End of Listing
