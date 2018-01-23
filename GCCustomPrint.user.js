@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.90
+// @version        0.91
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -100,22 +100,24 @@ function createWPtable(){
     try {
         //var tmpGcwp = document.getElementById('ctl00_ContentBody_Waypoints');
         var anzahlRow = document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr').length;
+        //var anzahlRow = document.getElementById('ctl00_ContentBody_WaypointsInfo').getElementsByTagName('tr').length;
         gcwp = "";
         gcwp += "<table width=100% border=\"1\">";
         gcwp += "<tr><th>Art</th><th>Hinweis</th><th>Pre</th><th>Post</th><th>Name</th><th>Koord</th></tr>";
         for (var n = 1; n < anzahlRow; n+=2){
+            //alert(n);
             gcwp += "<tr>";
-            gcwp += "<td width=3%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[5].innerHTML.replace (/^\s+/, '').replace (/\s+$/, '') + "</td>";
+            gcwp += "<td width=3%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[3].innerHTML.replace (/^\s+/, '').replace (/\s+$/, '') + "</td>";
             gcwp += "<td width=36%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[(n+1)].childNodes[5].textContent.replace (/^\s+/, '').replace (/\s+$/, '') + "&nbsp;</td>";
-            gcwp += "<td width=3%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[7].textContent.replace (/^\s+/, '').replace (/\s+$/, '') + "</td>";
-            gcwp += "<td width=3%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[9].innerHTML.replace (/^\s+/, '').replace (/\s+$/, '') + "</td>";
-            gcwp += "<td width=30%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[11].textContent.replace('(Parking Area)',' PA').replace(' (Question to Answer)',' QtA').replace('(Stages of a Multicache)','SoM').replace('(Final Location)',' F').trim() + "</td>";
-            gcwp += "<td width=25%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[13].textContent.replace (/^\s+/, '').replace (/\s+$/, '').replace('N ','N').replace('E ','E') + "</td>";
+            gcwp += "<td width=3%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[5].textContent.replace (/^\s+/, '').replace (/\s+$/, '') + "</td>";
+            gcwp += "<td width=3%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[7].innerHTML.replace (/^\s+/, '').replace (/\s+$/, '') + "</td>";
+            gcwp += "<td width=30%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[9].textContent.replace('(Parking Area)',' PA').replace(' (Question to Answer)',' QtA').replace('(Stages of a Multicache)','SoM').replace('(Final Location)',' F').trim() + "</td>";
+            gcwp += "<td width=25%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[11].textContent.replace (/^\s+/, '').replace (/\s+$/, '').replace('N ','N').replace('E ','E') + "</td>";
             gcwp += "</tr>";
         }
         gcwp += "</table>";
     }catch(err){
-        gcwp = "Keine";
+        gcwp = "Keine<br>";
     }
 }
 function rot_13(text) {
