@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.92
+// @version        0.93
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -239,7 +239,7 @@ function getGcHidden(){
     gcHidden = gcHidden.innerHTML;
 
     var gcHiddenLength = gcHidden.length;
-    var gcHiddenDate = gcHidden.substr(gcHiddenLength - 70, 10);
+    var gcHiddenDate = gcHidden.substr(gcHiddenLength - 70, 11);
     var gcHiddenYear = gcHiddenDate.substr(7,4);
     var gcHiddenDay = gcHiddenDate.substr(4,2);
     var gcHiddenMonth = gcHiddenDate.substr(1,2);
