@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.93
+// @version        0.94
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -79,7 +79,7 @@ function cst_print_show(){
     //Start of listing
     var newPage = "<html><head>" + "<style type=\"text/css\">" + css + "</style>" + " </head><body>";
     //concatenate all atributes to listing
-    newPage += '<headline>' + gcIcon + gccode + ': ' + gcname + '</headline><br>';
+    newPage += "<headline>" + gcIcon + gccode + ": " + gcname + "</headline><br>";
     newPage += "<b>Owner:</b> " + gcowner + " | <b>seit:</b> " + gcHidden + " | <b>Koord:</b> " + gcKoord + "<br>";
     newPage += "<b>Size:</b> " + gcSize + " | <b>Difficulty:</b> " + gcdifficult + " | <b>Terrain:</b> " + gcterrain + "<br>";
     if (shortDesc.length > 0) {
@@ -175,7 +175,8 @@ function rot_13(text) {
     if ( rot13.length == 13){
         rot13 += "keine";
     }
-    return rot13;
+    return text;
+    //return rot13;
 }
 function getAttributes(){
     gcAttributes = "";
@@ -269,9 +270,25 @@ function getGcSpoiler(){
 }
 
 function getGcIcon(){
-    var lvGcIcon = document.getElementById('cacheDetails');
-    gcIcon = lvGcIcon.getElementsByTagName('img')[0];
-    gcIcon = '<img src="' + gcIcon.getAttribute('src') + '" width="20" height="20">';
+    //var lvGcIcon = document.getElementById('cacheDetails');
+    //var lvGcIcon = document.getElementById('uxCacheImage');
+
+    var lvGcIcon = document.getElementsByClassName('cacheDetailsTitle');
+    //t = document.getElementsByClassName('cacheImage');
+    t = lvGcIcon;
+    //vt = t.getElementsByTagName('a').getAttribute('title');
+    //alert(t);
+    //for(i = 0; i < t.length; i++){
+    //    alert(t[i]);
+    //};
+    var links = document.querySelectorAll('a.cacheImage');
+    //for(i = 0; i < links.length;i++){
+    //    alert(links[i])
+    //}
+    //var lvGcIcon = document.getElementsByClassName('icon-cache-icon');
+    //gcIcon = lvGcIcon.getElementsByTagName('img')[0];
+    //gcIcon = '<img src="' + gcIcon.getAttribute('src') + '" width="20" height="20">';
+    gcIcon = '<svg class="icon cache-icon" role="presentation" width="20" height="20"><use xlink:href="'+ '/app/ui-icons/sprites/cache-types.svg#icon-3' +'"></use></svg>'
 }
 
 function getGcHint(){
