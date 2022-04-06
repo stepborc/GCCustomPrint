@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.96
+// @version        0.97
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -288,6 +288,7 @@ function getGcIcon(){
     //var lvGcIcon = document.getElementsByClassName('icon-cache-icon');
     //gcIcon = lvGcIcon.getElementsByTagName('img')[0];
     //gcIcon = '<img src="' + gcIcon.getAttribute('src') + '" width="20" height="20">';
+    //gcicon icon-3
     gcIcon = '<svg class="icon cache-icon" role="presentation" width="20" height="20"><use xlink:href="'+ '/app/ui-icons/sprites/cache-types.svg#icon-3' +'"></use></svg>'
 }
 
@@ -295,10 +296,13 @@ function getGcHint(){
     let gchint = document.getElementById('div_hint').innerHTML;
     gchint = gchint.trim();
     while (gchint.endsWith("<br>")){
-        gchint = gchint.substr(0,(gchint.length-4));
+        gchint = gchint.substring(0,(gchint.length-4));
         gchint = gchint.trim();
     }
-    gchint = rot_13(gchint);
+    //check if gc little helper is active
+    if (document.getElementsByClassName("ctoc_link").length === 0){
+        gchint = rot_13(gchint);
+    }
     //gchint = gchint.trim();
     return gchint;
 }
