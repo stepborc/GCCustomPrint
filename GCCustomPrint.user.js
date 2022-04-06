@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.94
+// @version        0.95
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -11,54 +11,54 @@
 // ==/UserScript==
 // Author:         stepborc <sbgithub@gmail.com>
 //Set a link for Custom Print in the Printarea
-var lnk = " | <a id='cst_print_link'>Custom Print</a>";
+let lnk = " | <a id='cst_print_link'>Custom Print</a>";
 document.getElementById('ctl00_ContentBody_lnkPrintDirectionsSimple').parentNode.innerHTML += lnk;
 document.getElementById('cst_print_link').addEventListener("click", cst_print_show, false);
 //Get GC-Code
-var gccode = document.getElementById('ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode').innerHTML;
+let gccode = document.getElementById('ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode').innerHTML;
 gccode = gccode.trim();
 //Get Cache name
-var gcname = document.getElementById('ctl00_ContentBody_CacheName').textContent;
+let gcname = document.getElementById('ctl00_ContentBody_CacheName').textContent;
 gcname = gcname.trim();
 //get cache details
-var gccachedetails = document.getElementById('cacheDetails').innerText;
+let gccachedetails = document.getElementById('cacheDetails').innerText;
 gccachedetails = gccachedetails.trim();
 //Get gcowner
-var gcownerStart = gccachedetails.search(/A cache by/i);
-var gcownerEnd = gccachedetails.search(/HIDDEN/i);
+let gcownerStart = gccachedetails.search(/A cache by/i);
+let gcownerEnd = gccachedetails.search(/HIDDEN/i);
 //var gcownerEnd = gccachedetails.search(/Message this owner/i);
-var gcowner = gccachedetails.substr((gcownerStart + 11),(gcownerEnd-gcownerStart-11));
+let gcowner = gccachedetails.substr((gcownerStart + 11),(gcownerEnd-gcownerStart-11));
 gcowner = gcowner.trim();
 //alert(gcowner);
 //Get gcHidden
-var gcHidden = "";
+let gcHidden = "";
 //Get gckoord
-var gcKoord = "";
+let gcKoord = "";
 //Get Size
-var gcSize = "";
+let gcSize = "";
 //gcsize = gcsize.replace(/Size: /, "");
 //gcsize = gcsize.trim();
 //Get gcdifficult
-var gcdifficult = "";
+let gcdifficult = "";
 //Get gcterrain
-var gcterrain = "";
+let gcterrain = "";
 //Get short cache description
-var shortDesc = "";
+let shortDesc = "";
 //Get long cache description
-var longDesc = "";
+let longDesc = "";
 //Get Hints
 //var gchint = document.getElementById('div_hint').innerHTML;
 //gchint = rot_13(gchint);
 //gchint = gchint.trim();
-var gchint = "";
+let gchint = "";
 //Get Waypoints
-var gcwp = "";
+let gcwp = "";
 //Get Attributes
-var gcAttributes = "";
+let gcAttributes = "";
 //Get Spoiler Area
-var gcSpoiler = "";
+let gcSpoiler = "";
 //Get Listing Icon
-var gcIcon = '';
+let gcIcon = '';
 //Testarea
 
 function cst_print_show(){
