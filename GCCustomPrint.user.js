@@ -50,7 +50,7 @@ let longDesc = "";
 //var gchint = document.getElementById('div_hint').innerHTML;
 //gchint = rot_13(gchint);
 //gchint = gchint.trim();
-let gchint = "";
+//let gchint = "";
 //Get Waypoints
 let gcwp = "";
 //Get Attributes
@@ -73,7 +73,7 @@ function cst_print_show(){
     getGcHidden();
     getGcSpoiler();
     getGcIcon();
-    getGcHint();
+    let gchint = getGcHint();
     //declare listing style
     var css = "* { font-family:Arial; color:black; text-align:left; font-size:medium } normal { font-family:Arial; color:black; text-align:left; font-size:medium } headline { font-family:Arial; color:black; font-size:large; font-weight:bold } attributes {font-family:Arial; color:black; font-size:small; font-weight:normal}";
     //Start of listing
@@ -175,8 +175,8 @@ function rot_13(text) {
     if ( rot13.length == 13){
         rot13 += "keine";
     }
-    return text;
-    //return rot13;
+    //return text;
+    return rot13;
 }
 function getAttributes(){
     gcAttributes = "";
@@ -292,7 +292,13 @@ function getGcIcon(){
 }
 
 function getGcHint(){
-    gchint = document.getElementById('div_hint').innerHTML;
-    gchint = rot_13(gchint);
+    let gchint = document.getElementById('div_hint').innerHTML;
     gchint = gchint.trim();
+    while (gchint.endsWith("<br>")){
+        gchint = gchint.substr(0,(gchint.length-4));
+        gchint = gchint.trim();
+    }
+    gchint = rot_13(gchint);
+    //gchint = gchint.trim();
+    return gchint;
 }
