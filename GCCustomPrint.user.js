@@ -278,26 +278,53 @@ function getGcSpoiler(){
 }
 
 function getGcIcon(){
-    //var lvGcIcon = document.getElementById('cacheDetails');
-    //var lvGcIcon = document.getElementById('uxCacheImage');
+    let iconType = '';
+    switch(iconTypeName){
+        case 'Traditional Geocache':
+            iconType = 'icon-2';
+            break;
+        case 'Mystery Cache':
+            iconType = 'icon-8';
+            break;
+        case 'Multi-cache':
+            iconType = 'icon-3';
+            break;
+        case 'Earthcache':
+            iconType = 'icon-137';
+            break;
+        case 'Letterbox Hybrid':
+            iconType = 'icon-5';
+            break;
+        case 'Event Cache':
+            iconType = 'icon-6';
+            break;
+        case 'Cache In Trash Out Event (CITO)':
+            iconType = 'icon-13';
+            break;
+        case 'Mega-Event Cache':
+            iconType = 'icon-453';
+            break;
+        case 'Giga-Event Cache':
+            iconType = 'icon-7005';
+            break;
+        case 'Wherigo Cache':
+            iconType = 'icon-1858';
+            break;
+        //case 'Letterbox Hybrid':
+        //    iconType = 'icon-5';
+        //    break;
+        //case 'Letterbox Hybrid':
+        //    iconType = 'icon-5';
+        //    break;
+        //case 'Letterbox Hybrid':
+        //    iconType = 'icon-5';
+        //    break;
 
-    var lvGcIcon = document.getElementsByClassName('cacheDetailsTitle');
-    //t = document.getElementsByClassName('cacheImage');
-    t = lvGcIcon;
-    //vt = t.getElementsByTagName('a').getAttribute('title');
-    //alert(t);
-    //for(i = 0; i < t.length; i++){
-    //    alert(t[i]);
-    //};
-    var links = document.querySelectorAll('a.cacheImage');
-    //for(i = 0; i < links.length;i++){
-    //    alert(links[i])
-    //}
-    //var lvGcIcon = document.getElementsByClassName('icon-cache-icon');
-    //gcIcon = lvGcIcon.getElementsByTagName('img')[0];
-    //gcIcon = '<img src="' + gcIcon.getAttribute('src') + '" width="20" height="20">';
-    //gcicon icon-3
-    gcIcon = '<svg class="icon cache-icon" role="presentation" width="20" height="20"><use xlink:href="'+ '/app/ui-icons/sprites/cache-types.svg#icon-3' +'"></use></svg>'
+    }
+    gcIcon = '<svg class="icon cache-icon" role="presentation" width="20" height="20"><use xlink:href="';
+    gcIcon = gcIcon + '/app/ui-icons/sprites/cache-types.svg#';
+    gcIcon = gcIcon + iconType;
+    gcIcon = gcIcon + '"></use></svg>';
 }
 
 function getGcHint(){
