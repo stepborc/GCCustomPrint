@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.99
+// @version        0.100
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -29,15 +29,10 @@ let gcownerStart = gccachedetails.search(/A cache by/i);
 let gcownerEnd = ''
 if (document.getElementsByClassName("ctoc_link").length === 0){
     gcownerEnd = gccachedetails.search(/Message this owner/i);
-    //gcownerEnd = gccachedetails.search(/A cache by /i);
-
 } else {
     gcownerEnd = gccachedetails.search(/HIDDEN/i);
-    //gcownerEnd = gccachedetails.search(/Message this owner/i);
 }
 let gcowner = gccachedetails.substring((gcownerStart + 11),(gccachedetails.length-20));
-//gcowner = gcowner.trim();
-//alert(gcowner);
 //Get gcHidden
 let gcHidden = "";
 //Get gckoord
@@ -278,6 +273,11 @@ function getGcSpoiler(){
 }
 
 function getGcIcon(){
+    let lvGcIcon = document.getElementsByClassName('cacheDetailsTitle')[0].innerHTML;
+    let pos0 = lvGcIcon.search(/title=\"/i);
+    let pos1 = lvGcIcon.search(/ aria-label/i);
+    let iconTypeName = lvGcIcon.substring(pos0+7,pos1-1);
+
     let iconType = '';
     switch(iconTypeName){
         case 'Traditional Geocache':
