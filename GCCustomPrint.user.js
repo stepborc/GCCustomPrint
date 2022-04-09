@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.100
+// @version        0.102
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -34,7 +34,7 @@ if (document.getElementsByClassName("ctoc_link").length === 0){
 }
 let gcowner = gccachedetails.substring((gcownerStart + 11),(gccachedetails.length-20));
 //Get gcHidden
-let gcHidden = "";
+//let gcHidden = "";
 //Get gckoord
 let gcKoord = "";
 //Get Size
@@ -73,7 +73,7 @@ function cst_print_show(){
     getGcDifficult();
     getGcSize();
     getGcKoord();
-    getGcHidden();
+    let gcHidden = getGcHidden();
     getGcSpoiler();
     getGcIcon();
     let gchint = getGcHint();
@@ -239,16 +239,19 @@ function getGcKoord(){
     gcKoord = gcKoord.replace('E ', 'E');
 }
 function getGcHidden(){
-    gcHidden = document.getElementById('ctl00_ContentBody_mcd2');
+    let gcHidden = document.getElementById('ctl00_ContentBody_mcd2');
     gcHidden = gcHidden.innerHTML;
-
-    var gcHiddenLength = gcHidden.length;
-    var gcHiddenDate = gcHidden.substr(gcHiddenLength - 70, 11);
-    var gcHiddenYear = gcHiddenDate.substr(7,4);
-    var gcHiddenDay = gcHiddenDate.substr(4,2);
-    var gcHiddenMonth = gcHiddenDate.substr(1,2);
+    gcHidden = gcHidden.trim();
+    let gcHiddenLength = gcHidden.length;
+    let gcHiddenDate = gcHidden.substring((gcHiddenLength-10));
+    //let gcHiddenDate = gcHidden.substring(gcHiddenLength - 10, (gcHiddenLength-10));
+    let gcHiddenYear = gcHiddenDate.substring(gcHiddenDate.length-4);
+    let gcHiddenDay = gcHiddenDate.slice(3,5);
+    let gcHiddenMonth = gcHiddenDate.slice(0,2);
     gcHidden = gcHiddenDay + "." + gcHiddenMonth.trim() + "." + gcHiddenYear;
+    return gcHidden;
 }
+
 function getGcSpoiler(){
     gcSpoiler = "";
     var nUl = document.getElementsByTagName('ul').length;
