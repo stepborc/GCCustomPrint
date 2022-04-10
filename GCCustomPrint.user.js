@@ -30,11 +30,10 @@ let gcownerEnd = ''
 if (document.getElementsByClassName("ctoc_link").length === 0){
     gcownerEnd = gccachedetails.search(/Message this owner/i);
 } else {
-    gcownerEnd = gccachedetails.search(/HIDDEN/i);
+    //gcownerEnd = gccachedetails.search(/HIDDEN/i);
+    gcownerEnd = gccachedetails.search(/A cache by/i);
 }
 let gcowner = gccachedetails.substring((gcownerStart + 11),(gccachedetails.length-20));
-//Get gcHidden
-//let gcHidden = "";
 //Get gckoord
 let gcKoord = "";
 //Get Size
@@ -65,6 +64,7 @@ let gcIcon = '';
 //Testarea
 
 function cst_print_show(){
+    let gcOwner = getGcOwner();
     getAttributes();
     createWPtable();
     getLongDesc();
@@ -83,7 +83,7 @@ function cst_print_show(){
     var newPage = "<html><head>" + "<style type=\"text/css\">" + css + "</style>" + " </head><body>";
     //concatenate all atributes to listing
     newPage += "<headline>" + gcIcon + gccode + ": " + gcname + "</headline><br>";
-    newPage += "<b>Owner:</b> " + gcowner + " | <b>seit:</b> " + gcHidden + " | <b>Koord:</b> " + gcKoord + "<br>";
+    newPage += "<b>Owner:</b> " + gcOwner + " | <b>seit:</b> " + gcHidden + " | <b>Koord:</b> " + gcKoord + "<br>";
     newPage += "<b>Size:</b> " + gcSize + " | <b>Difficulty:</b> " + gcdifficult + " | <b>Terrain:</b> " + gcterrain + "<br>";
     if (shortDesc.length > 0) {
         newPage += "<normal>" + shortDesc + "</normal><br>";
@@ -99,6 +99,18 @@ function cst_print_show(){
     popup.document.write( newPage );
     popup.focus();
 }
+function getGcOwner(){
+//Get gcowner
+let gcownerStart = gccachedetails.search(/A cache by/i);
+let gcownerEnd = ''
+if (document.getElementsByClassName("ctoc_link").length === 0){
+    gcownerEnd = gccachedetails.search(/Message this owner/i);
+} else {
+    gcownerEnd = gccachedetails.search(/HIDDEN/i);
+}
+let gcowner = gccachedetails.substring((gcownerStart + 11),(gccachedetails.length-20));
+return gcowner;
+};
 function createWPtable(){
     try {
         //var tmpGcwp = document.getElementById('ctl00_ContentBody_Waypoints');
