@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.105
+// @version        0.106
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -14,23 +14,10 @@
 let lnk = " | <a id='cst_print_link'>Custom Print</a>";
 document.getElementById('ctl00_ContentBody_lnkPrintDirectionsSimple').parentNode.innerHTML += lnk;
 document.getElementById('cst_print_link').addEventListener("click", cst_print_show, false);
-//Get GC-Code
-let gccode = document.getElementById('ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode').innerHTML;
-gccode = gccode.trim();
-//Get Cache name
-let gcname = document.getElementById('ctl00_ContentBody_CacheName').textContent;
-gcname = gcname.trim();
-//get cache details
-//let gccachedetails = document.getElementById('cacheDetails').innerText;
-let gccachedetails = document.getElementById('ctl00_ContentBody_mcd1').innerText;
-gccachedetails = gccachedetails.trim();
 
 //Get gckoord
 let gcKoord = "";
-//Get Size
-let gcSize = "";
-//gcsize = gcsize.replace(/Size: /, "");
-//gcsize = gcsize.trim();
+
 //Get gcdifficult
 let gcdifficult = "";
 //Get gcterrain
@@ -39,11 +26,6 @@ let gcterrain = "";
 let shortDesc = "";
 //Get long cache description
 let longDesc = "";
-//Get Hints
-//var gchint = document.getElementById('div_hint').innerHTML;
-//gchint = rot_13(gchint);
-//gchint = gchint.trim();
-//let gchint = "";
 //Get Waypoints
 let gcwp = "";
 //Get Attributes
@@ -56,24 +38,29 @@ let gcIcon = '';
 
 function cst_print_show(){
     let gcOwner = getGcOwner();
+    let gcCode = getGcCode();
+    let gcName = getGcName();
+    let gcHidden = getGcHidden();
+    let gchint = getGcHint();
+    let gcSize = getGcSize();
     getAttributes();
     createWPtable();
     getLongDesc();
     getShortDesc();
     getGcTerrain();
     getGcDifficult();
-    getGcSize();
+  
     getGcKoord();
-    let gcHidden = getGcHidden();
+    
     getGcSpoiler();
     getGcIcon();
-    let gchint = getGcHint();
+    
     //declare listing style
     var css = "* { font-family:Arial; color:black; text-align:left; font-size:medium } normal { font-family:Arial; color:black; text-align:left; font-size:medium } headline { font-family:Arial; color:black; font-size:large; font-weight:bold } attributes {font-family:Arial; color:black; font-size:small; font-weight:normal}";
     //Start of listing
     var newPage = "<html><head>" + "<style type=\"text/css\">" + css + "</style>" + " </head><body>";
     //concatenate all atributes to listing
-    newPage += "<headline>" + gcIcon + gccode + ": " + gcname + "</headline><br>";
+    newPage += "<headline>" + gcIcon + gcCode + ": " + gcName + "</headline><br>";
     newPage += "<b>Owner:</b> " + gcOwner + " | <b>seit:</b> " + gcHidden + " | <b>Koord:</b> " + gcKoord + "<br>";
     newPage += "<b>Size:</b> " + gcSize + " | <b>Difficulty:</b> " + gcdifficult + " | <b>Terrain:</b> " + gcterrain + "<br>";
     if (shortDesc.length > 0) {
@@ -89,6 +76,20 @@ function cst_print_show(){
     popup=window.open('', '' );
     popup.document.write( newPage );
     popup.focus();
+}
+
+function getGcName(){
+    //Get Cache name
+    let gcname = document.getElementById('ctl00_ContentBody_CacheName').textContent;
+    gcname = gcname.trim();
+    return gcname;
+}
+
+function getGcCode(){
+    //Get GC-Code
+    let gccode = document.getElementById('ctl00_ContentBody_CoordInfoLinkControl1_uxCoordInfoCode').innerHTML;
+    gccode = gccode.trim();
+    return gccode;
 }
 function getGcOwner(){
     //Get gcowner
@@ -229,12 +230,13 @@ function getGcDifficult(){
 }
 function getGcSize(){
     //gcSize = document.getElementsByTagName("img")[8].alt;
-    gcSize = document.getElementById('ctl00_ContentBody_size');
+    let gcSize = document.getElementById('ctl00_ContentBody_size');
     //alert(gcSize);
     gcSize = gcSize.getElementsByTagName("img")[0].alt;
     //alert(gcSize);
     gcSize = gcSize.replace(/Size: /, "");
     gcSize = gcSize.trim();
+    return gcSize;
 }
 function getGcKoord(){
     gcKoord = document.getElementById('uxLatLon').innerHTML;
