@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.102
+// @version        0.103
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -24,16 +24,7 @@ gcname = gcname.trim();
 //let gccachedetails = document.getElementById('cacheDetails').innerText;
 let gccachedetails = document.getElementById('ctl00_ContentBody_mcd1').innerText;
 gccachedetails = gccachedetails.trim();
-//Get gcowner
-let gcownerStart = gccachedetails.search(/A cache by/i);
-let gcownerEnd = ''
-if (document.getElementsByClassName("ctoc_link").length === 0){
-    gcownerEnd = gccachedetails.search(/Message this owner/i);
-} else {
-    //gcownerEnd = gccachedetails.search(/HIDDEN/i);
-    gcownerEnd = gccachedetails.search(/A cache by/i);
-}
-let gcowner = gccachedetails.substring((gcownerStart + 11),(gccachedetails.length-20));
+
 //Get gckoord
 let gcKoord = "";
 //Get Size
@@ -106,7 +97,8 @@ let gcownerEnd = ''
 if (document.getElementsByClassName("ctoc_link").length === 0){
     gcownerEnd = gccachedetails.search(/Message this owner/i);
 } else {
-    gcownerEnd = gccachedetails.search(/HIDDEN/i);
+    //gcownerEnd = gccachedetails.search(/HIDDEN/i);
+    gcownerEnd = gccachedetails.search(/A cache by/i);
 }
 let gcowner = gccachedetails.substring((gcownerStart + 11),(gccachedetails.length-20));
 return gcowner;
