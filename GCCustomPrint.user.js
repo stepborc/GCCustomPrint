@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.106
+// @version        0.107
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -92,6 +92,8 @@ function getGcCode(){
     return gccode;
 }
 function getGcOwner(){
+    let gccachedetails.document.getElementById('ct100_ContentBody_mcd1').innetText;
+    gccachedetails = gccachedetails.trim();
     //Get gcowner
     let gcownerStart = ("A cache by ").length
     let gcownerEnd = 0;
