@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.108
+// @version        0.109
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -58,7 +58,7 @@ function cst_print_show(){
     //declare listing style
     var css = "* { font-family:Arial; color:black; text-align:left; font-size:medium } normal { font-family:Arial; color:black; text-align:left; font-size:medium } headline { font-family:Arial; color:black; font-size:large; font-weight:bold } attributes {font-family:Arial; color:black; font-size:small; font-weight:normal}";
     //Start of listing
-    var newPage = "<html><head>" + "<style type=\"text/css\">" + css + "</style>" + " </head><body>";
+    let newPage = "<html><head>" + "<style type=\"text/css\">" + css + "</style>" + " </head><body>";
     //concatenate all atributes to listing
     newPage += "<headline>" + gcIcon + gcCode + ": " + gcName + "</headline><br>";
     newPage += "<b>Owner:</b> " + gcOwner + " | <b>seit:</b> " + gcHidden + " | <b>Koord:</b> " + gcKoord + "<br>";
@@ -92,7 +92,7 @@ function getGcCode(){
     return gccode;
 }
 function getGcOwner(){
-    let gccachedetails = document.getElementById('ct100_ContentBody_mcd1').innerText;
+    let gccachedetails = document.getElementById('ctl00_ContentBody_mcd1').textContent;
     gccachedetails = gccachedetails.trim();
     //Get gcowner
     let gcownerStart = ("A cache by ").length
