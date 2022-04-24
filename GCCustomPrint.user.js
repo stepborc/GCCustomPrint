@@ -292,7 +292,9 @@ function getGcIcon(){
     let iconType = '';
     switch(iconTypeName){
         case 'Traditional Geocache':
-            iconType = 'icon-2';
+            iconType = "https://d3mo08i005h0zn.cloudfront.net/blog/wp-content/uploads/2018/03/cache_icon_type_traditional-1.png";
+            let iconName = 'Tradi'
+            //iconType = 'icon-2';
             break;
         case 'Mystery Cache':
             iconType = 'icon-8';
@@ -332,10 +334,12 @@ function getGcIcon(){
         //    break;
 
     }
-    gcIcon = '<svg class="icon cache-icon" role="presentation" width="20" height="20"><use xlink:href="';
-    gcIcon = gcIcon + '/app/ui-icons/sprites/cache-types.svg#';
-    gcIcon = gcIcon + iconType;
-    gcIcon = gcIcon + '"></use></svg>';
+    //https://d3mo08i005h0zn.cloudfront.net/blog/wp-content/uploads/2018/03/cache_icon_type_traditional-1.png
+    //gcIcon = '<svg class="icon cache-icon" role="presentation" width="20" height="20"><use xlink:href="';
+    //gcIcon = gcIcon + '/app/ui-icons/sprites/cache-types.svg#';
+    //gcIcon = gcIcon + iconType;
+    //gcIcon = gcIcon + '"></use></svg>';
+    gcIcon = '<img src="' + iconType + '" width="24" high="24" alt="' + iconName + '">';
 }
 
 function getGcHint(){
