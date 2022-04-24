@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.109
+// @version        0.110
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -290,10 +290,11 @@ function getGcIcon(){
     let iconTypeName = lvGcIcon.substring(pos0+7,pos1-1);
 
     let iconType = '';
+    let iconAltText = '';
     switch(iconTypeName){
         case 'Traditional Geocache':
             iconType = "https://d3mo08i005h0zn.cloudfront.net/blog/wp-content/uploads/2018/03/cache_icon_type_traditional-1.png";
-            let iconName = 'Tradi'
+            let iconAltText = 'Tradi';
             //iconType = 'icon-2';
             break;
         case 'Mystery Cache':
@@ -339,7 +340,7 @@ function getGcIcon(){
     //gcIcon = gcIcon + '/app/ui-icons/sprites/cache-types.svg#';
     //gcIcon = gcIcon + iconType;
     //gcIcon = gcIcon + '"></use></svg>';
-    gcIcon = '<img src="' + iconType + '" width="24" high="24" alt="' + iconName + '">';
+    gcIcon = '<img src="' + iconType + '" width="24" high="24" alt="' + iconAltText + '">';
 }
 
 function getGcHint(){
