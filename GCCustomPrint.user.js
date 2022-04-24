@@ -294,7 +294,7 @@ function getGcIcon(){
     switch(iconTypeName){
         case 'Traditional Geocache':
             iconType = "https://d3mo08i005h0zn.cloudfront.net/blog/wp-content/uploads/2018/03/cache_icon_type_traditional-1.png";
-            let iconAltText = 'Tradi';
+            iconAltText = 'Tradi';
             //iconType = 'icon-2';
             break;
         case 'Mystery Cache':
