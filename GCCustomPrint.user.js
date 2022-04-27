@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.110
+// @version        0.111
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -121,7 +121,7 @@ function createWPtable(){
             gcwp += "<td width=36%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[(n+1)].childNodes[5].textContent.replace (/^\s+/, '').replace (/\s+$/, '') + "&nbsp;</td>";
             gcwp += "<td width=3%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[5].textContent.replace (/^\s+/, '').replace (/\s+$/, '') + "</td>";
             gcwp += "<td width=3%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[7].innerHTML.replace (/^\s+/, '').replace (/\s+$/, '') + "</td>";
-            gcwp += "<td width=30%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[9].textContent.replace('(Parking Area)',' PA').replace(' (Question to Answer)',' QtA').replace('(Stages of a Multicache)','SoM').replace('(Final Location)',' F').trim() + "</td>";
+            gcwp += "<td width=30%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[9].textContent.replace('(Parking Area)',' PA').replace(' (Question to Answer)',' QtA').replace('(Stages of a Multicache)','SoM').replace('(Physical Stage)','(PS)').replace('(Final Location)',' F').trim() + "</td>";
             gcwp += "<td width=25%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[11].textContent.replace (/^\s+/, '').replace (/\s+$/, '').replace('N ','N').replace('E ','E') + "</td>";
             gcwp += "</tr>";
         }
@@ -299,30 +299,39 @@ function getGcIcon(){
             break;
         case 'Mystery Cache':
             iconType = 'icon-8';
+            iconAltText = 'Mystery';
             break;
         case 'Multi-cache':
             iconType = 'icon-3';
+            iconAltText = 'Multi';
             break;
         case 'Earthcache':
             iconType = 'icon-137';
+            iconAltText = 'Earthcache';
             break;
         case 'Letterbox Hybrid':
             iconType = 'icon-5';
+            iconAltText = 'Letterbox';
             break;
         case 'Event Cache':
             iconType = 'icon-6';
+            iconAltText = 'Event';
             break;
         case 'Cache In Trash Out Event (CITO)':
             iconType = 'icon-13';
+            iconAltText = 'CITO';
             break;
         case 'Mega-Event Cache':
             iconType = 'icon-453';
+            iconAltText = 'Mega';
             break;
         case 'Giga-Event Cache':
             iconType = 'icon-7005';
+            iconAltText = 'Giga';
             break;
         case 'Wherigo Cache':
             iconType = 'icon-1858';
+            iconAltText = 'Wherigo';
             break;
         //case 'Letterbox Hybrid':
         //    iconType = 'icon-5';
