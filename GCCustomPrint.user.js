@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.114
+// @version        0.115
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -15,7 +15,7 @@ let lnk = " | <a id='cst_print_link'>Custom Print</a>";
 document.getElementById('ctl00_ContentBody_lnkPrintDirectionsSimple').parentNode.innerHTML += lnk;
 document.getElementById('cst_print_link').addEventListener("click", cst_print_show, false);
 
-//solve github probelem
+//solve github problem
 //https://wiki.archlinux.org/title/Xinit#xinitrc
 
 //Get gckoord
@@ -235,13 +235,15 @@ function getGcDifficult(){
 }
 function getGcSize(){
     //gcSize = document.getElementsByTagName("img")[8].alt;
-    let gcSize = document.getElementById('ctl00_ContentBody_size');
+    //let gcSize = document.getElementById('ctl00_ContentBody_size');
     //alert(gcSize);
-    gcSize = gcSize.getElementsByTagName("img")[0].alt;
+    //gcSize = gcSize.getElementsByTagName("img")[0].alt;
     //alert(gcSize);
-    gcSize = gcSize.replace(/Size: /, "");
-    gcSize = gcSize.trim();
-    return gcSize;
+    //gcSize = gcSize.replace(/Size: /, "");
+    //gcSize = gcSize.trim();
+    let gcSizeNew = document.getElementsByClassName('minorCacheDetails')[2].outerHTML;
+    //return gcSize;
+    return gcSizeNew;
 }
 function getGcKoord(){
     gcKoord = document.getElementById('uxLatLon').innerHTML;
