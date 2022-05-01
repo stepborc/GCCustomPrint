@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.112
+// @version        0.113
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -298,11 +298,13 @@ function getGcIcon(){
             //iconType = 'icon-2';
             break;
         case 'Mystery Cache':
-            iconType = 'icon-8';
+            //iconType = 'icon-8';
+            iconType = "https://d3mo08i005h0zn.cloudfront.net/blog/wp-content/uploads/2018/03/cache_icon_type_mystery.png";
             iconAltText = 'Mystery';
             break;
         case 'Multi-cache':
-            iconType = 'icon-3';
+            //iconType = 'icon-3';
+            iconType = "https://d3mo08i005h0zn.cloudfront.net/blog/wp-content/uploads/2018/03/cache_icon_type_multi.png";
             iconAltText = 'Multi';
             break;
         case 'Earthcache':
@@ -310,7 +312,8 @@ function getGcIcon(){
             iconAltText = 'Earthcache';
             break;
         case 'Letterbox Hybrid':
-            iconType = 'icon-5';
+            //iconType = 'icon-5';
+            iconType = "https://d3mo08i005h0zn.cloudfront.net/blog/wp-content/uploads/2018/03/cache_icon_type_letterbox.png";
             iconAltText = 'Letterbox';
             break;
         case 'Event Cache':
@@ -330,7 +333,8 @@ function getGcIcon(){
             iconAltText = 'Giga';
             break;
         case 'Wherigo Cache':
-            iconType = 'icon-1858';
+            //iconType = 'icon-1858';
+            iconType = "https://d3mo08i005h0zn.cloudfront.net/blog/wp-content/uploads/2018/03/cache_icon_type_wherigo.png";
             iconAltText = 'Wherigo';
             break;
         //case 'Letterbox Hybrid':
