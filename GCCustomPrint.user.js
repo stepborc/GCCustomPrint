@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.113
+// @version        0.114
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -14,6 +14,9 @@
 let lnk = " | <a id='cst_print_link'>Custom Print</a>";
 document.getElementById('ctl00_ContentBody_lnkPrintDirectionsSimple').parentNode.innerHTML += lnk;
 document.getElementById('cst_print_link').addEventListener("click", cst_print_show, false);
+
+//solve github probelem
+//https://wiki.archlinux.org/title/Xinit#xinitrc
 
 //Get gckoord
 let gcKoord = "";
