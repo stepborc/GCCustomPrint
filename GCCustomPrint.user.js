@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.115
+// @version        0.116
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -13,7 +13,7 @@
 //Set a link for Custom Print in the Printarea
 let lnk = " | <a id='cst_print_link'>Custom Print</a>";
 document.getElementById('ctl00_ContentBody_lnkPrintDirectionsSimple').parentNode.innerHTML += lnk;
-document.getElementById('cst_print_link').addEventListener("click", cst_print_show, false);
+document.getElementById('cst_print_link').addEventListener('click', cst_print_show, false);
 
 //solve github problem
 //https://wiki.archlinux.org/title/Xinit#xinitrc
@@ -34,7 +34,7 @@ let gcwp = "";
 //Get Attributes
 let gcAttributes = "";
 //Get Spoiler Area
-let gcSpoiler = "";
+//let gcSpoiler = "";
 //Get Listing Icon
 let gcIcon = '';
 //Testarea
@@ -52,16 +52,13 @@ function cst_print_show(){
     getShortDesc();
     getGcTerrain();
     getGcDifficult();
-  
     getGcKoord();
-    
-    getGcSpoiler();
+    let gcSpoiler = getGcSpoiler();
     getGcIcon();
-    
     //declare listing style
-    var css = "* { font-family:Arial; color:black; text-align:left; font-size:medium } normal { font-family:Arial; color:black; text-align:left; font-size:medium } headline { font-family:Arial; color:black; font-size:large; font-weight:bold } attributes {font-family:Arial; color:black; font-size:small; font-weight:normal}";
+    let css = '* { font-family:Arial; color:black; text-align:left; font-size:medium } normal { font-family:Arial; color:black; text-align:left; font-size:medium } headline { font-family:Arial; color:black; font-size:large; font-weight:bold } attributes {font-family:Arial; color:black; font-size:small; font-weight:normal}';
     //Start of listing
-    let newPage = "<html><head>" + "<style type=\"text/css\">" + css + "</style>" + " </head><body>";
+    let newPage = '<html><head><style type=\"text/css\">' + css + '</style></head><body>';
     //concatenate all atributes to listing
     newPage += "<headline>" + gcIcon + gcCode + ": " + gcName + "</headline><br>";
     newPage += "<b>Owner:</b> " + gcOwner + " | <b>seit:</b> " + gcHidden + " | <b>Koord:</b> " + gcKoord + "<br>";
@@ -76,7 +73,7 @@ function cst_print_show(){
     newPage += "<b>Spoiler</b><br>" + gcSpoiler;
     //End of Listing
     newPage += "</body></html>";
-    popup=window.open('', '' );
+    let popup=window.open('', '' );
     popup.document.write( newPage );
     popup.focus();
 }
@@ -112,12 +109,12 @@ function getGcOwner(){
 function createWPtable(){
     try {
         //var tmpGcwp = document.getElementById('ctl00_ContentBody_Waypoints');
-        var anzahlRow = document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr').length;
+        let anzahlRow = document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr').length;
         //var anzahlRow = document.getElementById('ctl00_ContentBody_WaypointsInfo').getElementsByTagName('tr').length;
         gcwp = "";
         gcwp += "<table width=100% border=\"1\">";
         gcwp += "<tr><th>Art</th><th>Hinweis</th><th>Pre</th><th>Post</th><th>Name</th><th>Koord</th></tr>";
-        for (var n = 1; n < anzahlRow; n+=2){
+        for (let n = 1; n < anzahlRow; n+=2){
             //alert(n);
             gcwp += "<tr>";
             gcwp += "<td width=3%>" + document.getElementById('ctl00_ContentBody_Waypoints').getElementsByTagName('tr')[n].childNodes[3].innerHTML.replace (/^\s+/, '').replace (/\s+$/, '') + "</td>";
@@ -134,11 +131,11 @@ function createWPtable(){
     }
 }
 function rot_13(text) {
-    var keycode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var rot13 = new String();
-    for ( var i = 0; i < text.length; i++) {
-        var codechar = text.substring(i, i + 1);
-        var pos = keycode.indexOf(codechar.toUpperCase());
+    let keycode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let rot13 = new String();
+    for ( let i = 0; i < text.length; i++) {
+        let codechar = text.substring(i, i + 1);
+        let pos = keycode.indexOf(codechar.toUpperCase());
         if (pos >= 0) {
             pos = (pos + keycode.length / 2) % keycode.length;
             codechar = (codechar == codechar.toUpperCase()) ? keycode
@@ -146,6 +143,7 @@ function rot_13(text) {
             .toLowerCase();
             rot13 = rot13 + codechar;
         } else {
+            let laenge = 0;
             switch (codechar) {
                 case "<":
                     if (text.substring(i, i + 4).trim().toUpperCase() == "<BR>" || text.substring(i, i + 4).trim().toUpperCase() == "<BR/>") {
@@ -162,7 +160,7 @@ function rot_13(text) {
                     // Wenn ein &-Zeichen im Text auftaucht, das naechste Semikolon
                     // suchen
                     rot13 = rot13 + codechar;
-                    var laenge = 1;
+                    laenge = 1;
                     while (text.substring(i + laenge, i + 1 + laenge) != ";") {
                         codechar = text.substring(i + laenge, i + 1 + laenge);
                         rot13 = rot13 + codechar;
@@ -193,16 +191,16 @@ function rot_13(text) {
 }
 function getAttributes(){
     gcAttributes = "";
-    var nAttributes = document.getElementById('ctl00_ContentBody_detailWidget').getElementsByTagName('img').length;
+    let nAttributes = document.getElementById('ctl00_ContentBody_detailWidget').getElementsByTagName('img').length;
     if (nAttributes !== 0){
-        for (var i = 0; i < nAttributes; i++){
-            if (document.getElementById('ctl00_ContentBody_detailWidget').getElementsByTagName('img')[i].alt != "blank"){
-                lv_gcAttribute = '<img src="' +  document.getElementById('ctl00_ContentBody_detailWidget').getElementsByTagName('img')[i].src + '" width="20" height="20">';
+        for (let i = 0; i < nAttributes; i++){
+            if (document.getElementById('ctl00_ContentBody_detailWidget').getElementsByTagName('img')[i].alt != 'blank'){
+                let lv_gcAttribute = '<img src="' + document.getElementById('ctl00_ContentBody_detailWidget').getElementsByTagName('img')[i].src + '" width="20" height="20">';
                 gcAttributes += lv_gcAttribute;
             }
         }
         gcAttributes += "<br>";
-        for (var i = 0; i < nAttributes; i++){
+        for (let i = 0; i < nAttributes; i++){
             if (document.getElementById('ctl00_ContentBody_detailWidget').getElementsByTagName('img')[i].alt != "blank"){
                 gcAttributes += document.getElementById('ctl00_ContentBody_detailWidget').getElementsByTagName('img')[i].alt + ", ";
             }
@@ -213,7 +211,7 @@ function getAttributes(){
 }
 function getLongDesc(){
     longDesc = document.getElementById('ctl00_ContentBody_LongDescription');
-    for (var i = 0;i < longDesc.getElementsByTagName('span').length; i++){
+    for (let i = 0;i < longDesc.getElementsByTagName('span').length; i++){
         longDesc.getElementsByTagName('span')[i].style.fontFamily = "Arial";
         longDesc.getElementsByTagName('span')[i].style.fontSize = "medium";
         longDesc.getElementsByTagName('span')[i].style.textAlign = "left";
@@ -266,15 +264,31 @@ function getGcHidden(){
 }
 
 function getGcSpoiler(){
-    gcSpoiler = "";
-    var nUl = document.getElementsByTagName('ul').length;
-    for (var i = 0;i<nUl;i++){
+    let gcSpoiler = "";
+    let nUl = document.getElementsByTagName('ul').length;
+    let gcSpoilerAttribute = '';
+    let nGcSpoiler = '';
+    let lvHref = '';
+    let lSpoilerImg = document.getElementsByClassName('gclh_max');
+    if (lSpoilerImg.length != 0){
+        for (let i = 0;i<3;i++){
+            lSpoilerImg[0].remove();
+        }
+    }
+    //lSpoilerImg = document.getElementsByClassName('gclh_thumb');
+    //for (let i = 0;i<3;i++){
+    //    lSpoilerImg[0].remove();
+    //}
+    //let gcSpoiler1 = document.getElementsByClassName('CachePageImages NoPrint');
+    //let nGcSpoiler1 = gcSpoiler1.getElementsByTagName('ul')[0];getElementsByTagName('li');
+
+    for (let i = 0;i<nUl;i++){
         gcSpoilerAttribute = document.getElementsByTagName('ul')[i].getAttribute('class');
         if (gcSpoilerAttribute == 'CachePageImages NoPrint'){
-            var lvGcSpoiler = document.getElementsByTagName('ul')[i];
+            let lvGcSpoiler = document.getElementsByTagName('ul')[i];
             nGcSpoiler = lvGcSpoiler.getElementsByTagName('li').length;
             if (nGcSpoiler !== 0){
-            for (var j = 0;j<nGcSpoiler;j++){
+            for (let j = 0;j<nGcSpoiler;j++){
                 lvHref = lvGcSpoiler.getElementsByTagName('li')[j].getElementsByTagName('a');
                 lvHref = '<img src="' + lvHref[0].getAttribute('href',0) +'"><br>' + lvGcSpoiler.getElementsByTagName('li')[j].innerHTML + '<br>';
                 gcSpoiler += lvHref;
@@ -285,7 +299,7 @@ function getGcSpoiler(){
             break;
         }
     }
-
+    return gcSpoiler;
 }
 
 function getGcIcon(){
