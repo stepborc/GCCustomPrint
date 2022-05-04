@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           GC Custom Print
 // @namespace      http://xxx.xxx.xxx.xxx
-// @version        0.116
+// @version        0.117
 // @include        https://www.geocaching.com/geocache/*
 // @description    A custom print solution for geocaching.com.
 // @copyright      stepborc <sbgithub@gmail.com>
@@ -372,7 +372,7 @@ function getGcIcon(){
     //gcIcon = gcIcon + '/app/ui-icons/sprites/cache-types.svg#';
     //gcIcon = gcIcon + iconType;
     //gcIcon = gcIcon + '"></use></svg>';
-    gcIcon = '<img src="' + iconType + '" width="24" high="24" alt="' + iconAltText + '">';
+    gcIcon = '<img src="' + iconType + '" width="24" height="24" alt="' + iconAltText + '">';
 }
 
 function getGcHint(){
